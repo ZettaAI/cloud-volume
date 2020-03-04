@@ -22,6 +22,7 @@ setuptools.setup(
   # https://www.python.org/dev/peps/pep-0496/
   extras_require={
     "boss": "intern>=0.9.11",
+    "zarr": "zarr",
     ':sys_platform!="win32"': [
       "posix_ipc==1.0.4",
       "psutil==5.4.3",

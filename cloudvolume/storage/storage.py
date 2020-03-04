@@ -215,6 +215,12 @@ class SimpleStorage(StorageBase):
     for f in self._interface.list_files(prefix, flat):
       yield f
 
+  def keys(self):
+    return self.list_files(flat=True)
+
+  def __contains__(self, key):
+    return self.exists(key)
+
   def __del__(self):
     self._interface.release_connection()
 
@@ -225,8 +231,11 @@ class SimpleStorage(StorageBase):
     self._interface.release_connection()
 
   def __getitem__(self, key):
-    return self.get_file(key)
-  
+    content = self.get_file(key)
+    if content is None:
+      raise KeyError(key)
+    return content
+
   def __setitem__(self, key, value):
     if type(key) == tuple:
       key, kwargs = key
@@ -415,6 +424,12 @@ class GreenStorage(StorageBase):
       for f in conn.list_files(prefix, flat):
         yield f
 
+  def keys(self):
+    return self.list_files(flat=True)
+
+  def __contains__(self, key):
+    return self.exists(key)
+
   def __enter__(self):
     StorageBase.__enter__(self)
     self.start_threads()
@@ -424,6 +439,12 @@ class GreenStorage(StorageBase):
     StorageBase.__exit__(self, exception_type, exception_value, traceback)
     self.pool.join()
     self.kill_threads()
+
+  def __getitem__(self, key):
+    content = self.get_file(key)
+    if content is None:
+      raise KeyError(key)
+    return content
 
 class ThreadedStorage(StorageBase, ThreadedQueue):
   """
@@ -637,6 +658,12 @@ class ThreadedStorage(StorageBase, ThreadedQueue):
     for f in self._interface.list_files(prefix, flat):
       yield f
 
+  def keys(self):
+    return self.list_files(flat=True)
+
+  def __contains__(self, key):
+    return self.exists(key)
+
   def __del__(self):
     ThreadedQueue.__del__(self)
     self._interface.release_connection()
@@ -645,4 +672,8 @@ class ThreadedStorage(StorageBase, ThreadedQueue):
     ThreadedQueue.__exit__(self, exception_type, exception_value, traceback)
     self._interface.release_connection()
 
-
+  def __getitem__(self, key):
+    content = self.get_file(key)
+    if content is None:
+      raise KeyError(key)
+    return content

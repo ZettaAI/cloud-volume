@@ -83,8 +83,8 @@ try:
 except ImportError:
   pass
 
-
-
-
-
-
+try:
+  from .datasource.zarr import register as register_zarr
+  register_zarr()
+except ImportError:
+  pass

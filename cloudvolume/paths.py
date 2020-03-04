@@ -12,7 +12,7 @@ ExtractedPath = namedtuple('ExtractedPath',
 )
 
 ALLOWED_PROTOCOLS = [ 'gs', 'file', 's3', 'matrix', 'http', 'https' ]
-ALLOWED_FORMATS = [ 'graphene', 'precomputed', 'boss' ] 
+ALLOWED_FORMATS = [ 'graphene', 'precomputed', 'boss', 'zarr' ]
 
 CLOUDPATH_ERROR = yellow("""
 Cloud Path must conform to FORMAT://PROTOCOL://BUCKET/PATH
