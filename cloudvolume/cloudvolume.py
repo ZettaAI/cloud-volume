@@ -31,7 +31,7 @@ class SharedConfiguration(object):
   """
   def __init__(
     self, cdn_cache, compress, compress_level, green,
-    mip, parallel, progress, secrets, request_payer, storage_class
+    mip, parallel, progress, secrets, request_payer, storage_class,
     *args, **kwargs
   ):
     if type(parallel) == bool:

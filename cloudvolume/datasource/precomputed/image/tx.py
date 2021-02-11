@@ -125,7 +125,6 @@ def upload(
       delete_black_uploads=delete_black_uploads,
       green=green, secrets=secrets,
       request_payer=request_payer,
->>>>>>> feat: allow user to specify storage_class for file uploads
     )
 
   compress_cache = should_compress(meta.encoding(mip), compress, cache, iscache=True)
@@ -173,7 +172,6 @@ def upload_aligned(
       background_color=background_color,
       green=green, compress_level=compress_level,
       secrets=secrets, request_payer=request_payer,
->>>>>>> feat: allow user to specify storage_class for file uploads
     )
     return
 
@@ -203,7 +201,6 @@ def upload_aligned(
     delete_black_uploads, background_color, 
     green, compress_level=compress_level,
     secrets=secrets, request_payer=request_payer,
->>>>>>> feat: allow user to specify storage_class for file uploads
   )
 
   parallel_execution(cup, chunk_ranges_by_process, parallel, cleanup_shm=location)
@@ -222,7 +219,6 @@ def child_upload_process(
     delete_black_uploads, background_color,
     green, chunk_ranges, compress_level=None,
     secrets=None, request_payer=None,
->>>>>>> feat: allow user to specify storage_class for file uploads
   ):
   global fs_lock
   reset_connection_pools()
