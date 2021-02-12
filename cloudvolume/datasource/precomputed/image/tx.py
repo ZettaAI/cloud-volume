@@ -125,6 +125,7 @@ def upload(
       delete_black_uploads=delete_black_uploads,
       green=green, secrets=secrets,
       request_payer=request_payer,
+      storage_class=storage_class
     )
 
   compress_cache = should_compress(meta.encoding(mip), compress, cache, iscache=True)
@@ -172,6 +173,7 @@ def upload_aligned(
       background_color=background_color,
       green=green, compress_level=compress_level,
       secrets=secrets, request_payer=request_payer,
+      storage_class=storage_class
     )
     return
 
