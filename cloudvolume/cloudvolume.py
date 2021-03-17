@@ -61,7 +61,7 @@ class CloudVolume(object):
     delete_black_uploads=False, background_color=0,
     green_threads=False, use_https=False,
     max_redirects=10, mesh_dir=None, skel_dir=None, 
-    agglomerate=False, secrets=None
+    agglomerate=False, secrets=None, fill_missing_retry=0
   ):
     """
     A "serverless" Python client for reading and writing arbitrarily large 

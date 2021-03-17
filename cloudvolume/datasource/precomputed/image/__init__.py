@@ -35,6 +35,7 @@ class PrecomputedImageSource(ImageSourceInterface):
     delete_black_uploads=False,
     background_color=0,
     readonly=False,
+    fill_missing_retry=0
   ):
     self.config = config
     self.meta = meta 
@@ -43,6 +44,7 @@ class PrecomputedImageSource(ImageSourceInterface):
     self.autocrop = bool(autocrop)
     self.bounded = bool(bounded)
     self.fill_missing = bool(fill_missing)
+    self.fill_missing_retry = fill_missing_retry
     self.non_aligned_writes = bool(non_aligned_writes)
     self.readonly = bool(readonly)
     
@@ -167,6 +169,7 @@ class PrecomputedImageSource(ImageSourceInterface):
         use_shared_memory=use_shared_memory,
         use_file=use_file,
         fill_missing=self.fill_missing,
+        fill_missing_retry=self.fill_missing_retry,
         progress=self.config.progress,
         compress=self.config.compress,
         order=order,

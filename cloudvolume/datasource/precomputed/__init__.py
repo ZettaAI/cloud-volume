@@ -17,7 +17,7 @@ def create_precomputed(
     delete_black_uploads=False, background_color=0, 
     green_threads=False, use_https=False,
     max_redirects=10, mesh_dir=None, skel_dir=None,
-    secrets=None, **kwargs # absorb graphene arguments
+    secrets=None, fill_missing_retry=0, **kwargs # absorb graphene arguments
   ):
     path = strict_extract(cloudpath)
     config = SharedConfiguration(
@@ -82,7 +82,7 @@ def create_precomputed(
       fill_missing=bool(fill_missing),
       delete_black_uploads=bool(delete_black_uploads),
       background_color=background_color,
-      readonly=readonly,
+      readonly=readonly, fill_missing_retry=fill_missing_retry
     )
 
     mesh = PrecomputedMeshSource(meta, cache, config, readonly)

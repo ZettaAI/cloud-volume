@@ -108,7 +108,7 @@ def upload(
   core_chunks = set(chunknames(retracted, meta.bounds(mip), meta.key(mip), meta.chunk_size(mip)))
   shell_chunks = all_chunks.difference(core_chunks)
 
-  def shade_and_upload(img3d, bbox):
+  def shade_and_upload(img3d, bbox, is_missing):
     # decode is returning non-writable chunk
     # we're throwing them away so safe to write
     img3d.setflags(write=1) 
