@@ -193,12 +193,14 @@ def download(
     )
     if len(missing_chunks) > 0:
       first_download_attempt = False
+      import copy
       import time
       for i in range(fill_missing_retry):
+        missing_chunks_copy = copy.deepcopy(missing_chunks)
         missing_chunks = []
         time.sleep(2)
         download_chunks_threaded(
-          meta, cache, mip, missing_chunks, 
+          meta, cache, mip, missing_chunks_copy, 
           fn=fn, fill_missing=fill_missing,
           progress=progress, compress_cache=compress_cache, 
           green=green, secrets=secrets, background_color=background_color,
