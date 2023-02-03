@@ -224,7 +224,6 @@ def shade(dest_img, dest_bbox, src_img, src_bbox):
   istart = max2(spt - src_bbox.minpt, ZERO3)
   iend = min2(ept - src_bbox.maxpt, ZERO3) + src_img.shape[:3]
   sbox = Bbox(istart, iend)
-
   while src_img.ndim < 4:
     src_img = src_img[..., np.newaxis]
   

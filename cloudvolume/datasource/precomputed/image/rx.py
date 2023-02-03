@@ -546,6 +546,7 @@ def download_chunks_threaded(
   remote_downloads = ( 
     partial(process, meta.cloudpath, filename, cache.enabled) for filename in locations['remote'] 
   )
+  n_downloads = len(locations['local']) + len(locations['remote'])
 
   downloads = itertools.chain( local_downloads, remote_downloads )
 
@@ -554,7 +555,7 @@ def download_chunks_threaded(
 
   schedule_jobs(
     fns=downloads, 
-    concurrency=DEFAULT_THREADS, 
+    concurrency=min(DEFAULT_THREADS, n_downloads),
     progress=progress,
     total=len(cloudpaths),
     green=green,

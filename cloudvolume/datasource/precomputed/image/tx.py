@@ -274,7 +274,6 @@ def threaded_upload_chunks(
     compress_level=None,
     secrets=None,
   ):
-  
   if cache.enabled:
     mkdir(cache.path)
 
@@ -362,9 +361,10 @@ def threaded_upload_chunks(
     if callable(progress):
       progress()
 
+  #TODO: n_threads = min(n_threads, len(fns)) except that cannot be done due to generator
   schedule_jobs(
-    fns=( partial(process_and_update, *vals) for vals in chunk_ranges ), 
-    concurrency=n_threads, 
+    fns=( partial(process_and_update, *vals) for vals in chunk_ranges )
+    concurrency=n_threads,
     progress=('Uploading' if progress and not callable(progress) else None),
     total=len(chunk_ranges),
     green=green,

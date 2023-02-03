@@ -151,7 +151,7 @@ def mkdir(path):
       os.makedirs(path)
   except OSError as e:
     if e.errno == 17: # File Exists
-      time.sleep(0.1)
+      time.sleep(0.01)
       return mkdir(path)
     else:
       raise
